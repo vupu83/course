@@ -1,53 +1,60 @@
 import React from 'react';
-import { Text, View, Image, Linking, Alert } from 'react-native';
+import { Text, View, Image, Alert, Button } from 'react-native';
 import Card from './Card';
 import CardSection from './CardSection';
-import Button from './Button';
 
 class AlbumDetail extends React.Component {
-    constructor (album)
+    state = { choosed: false };
+    title; image; artist; content;
+    constructor (props)
     {
-        super(album);
-        const { title, artist, thumbnail_image, image, url, content } = album;
-        const {
-            thumbnailStyle,
-            headerContentStyle,
-            thumbnailContainerStyle,
-            headerTextStyle,
-            imageStyle
-        } = styles;
-
+        super(props);
+        this.title = props.album.title;
+        this.image = props.album.thumbnail_image;
+        this.artist = props.album.artist;
+        this.content = props.album.content;
     }
 
-    pickCourse(title)
-    {
-        Alert.alert(title);
-    }
+    childAddAction = (title) => {
+        this.setState({choosed: true});
+        this.props.action(title);
+    };
+    childRemoveAction = (title) => {
+        this.setState({choosed: false});
+        this.props.action(title);
+    };
 
     render() {
         return (
             <Card>
                 <CardSection>
-                    <View style={thumbnailContainerStyle}>
+                    <View style={styles.thumbnailContainerStyle}>
                         <Image
-                            style={thumbnailStyle}
-                            source={{uri: thumbnail_image}}
+                            style={styles.thumbnailStyle}
+                            source={{uri: this.image}}
                         />
                     </View>
-                    <View style={headerContentStyle}>
-                        <Text style={headerTextStyle}>{title}</Text>
-                        <Text>{artist}</Text>
+                    <View style={styles.headerContentStyle}>
+                        <Text style={styles.headerTextStyle}>{this.title}</Text>
+                        <Text>{this.artist}</Text>
                     </View>
                 </CardSection>
 
                 <CardSection>
-                    <Text>{content}</Text>
+                    <Text>{this.content}</Text>
                 </CardSection>
 
                 <CardSection>
-                    <Button onPress={ () => this.pickCourse({title})}>
-                        選修這門課
-                    </Button>
+                    <Button
+                        style={styles.buttonStyle}
+                        onPress={() => this.childAddAction(this.title)} title="加選"
+                        disabled={this.state.choosed}
+                        />
+                    <Button
+                        style={styles.buttonStyle}
+                        onPress={() => this.childRemoveAction(this.title)} title="退選"
+                        disabled={!this.state.choosed}
+                    />
                 </CardSection>
             </Card>
         );
@@ -76,7 +83,17 @@ const styles = {
     height: 300,
     flex: 1,
     width: null
-  }
+  },
+    buttonStyle: {
+        flex: 1,
+        alignSelf: 'stretch',
+        backgroundColor: '#fff',
+        borderRadius: 5,
+        borderWidth: 1,
+        borderColor: '#007aff',
+        marginLeft: 5,
+        marginRight: 5
+    }
 };
 
 export default AlbumDetail;

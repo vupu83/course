@@ -2,7 +2,7 @@
 
 // Import a library to help create a component
 import React, { Component } from 'react';
-import { AppRegistry, View, Text, TextInput } from 'react-native';
+import { AppRegistry, View, Text, TextInput, Alert } from 'react-native';
 import Header from './src/components/header';
 import AlbumList from './src/components/AlbumList';
 import Button from './src/components/Button';
@@ -17,7 +17,10 @@ class App extends Component {
     }
 
     handlePress() {
-        this.setState({ loginSuccess: true });
+        if (this.state.text === '12345')
+            this.setState({ loginSuccess: true });
+        else
+            Alert.alert("學號輸入錯誤!");
     }
 
     render() {
