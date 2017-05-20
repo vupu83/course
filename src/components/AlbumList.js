@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ScrollView, Alert } from 'react-native';
+import { ScrollView, Alert, ActivityIndicator } from 'react-native';
 import axios from 'axios';
 import AlbumDetail from './AlbumDetail';
 
@@ -33,7 +33,7 @@ class AlbumList extends Component {
       let coursePrint = "";
       if (courseArray.length > 0) {
           courseArray.forEach(function (element) {
-              if (element != undefined)
+              if (element !== undefined)
                   coursePrint += (element + "\r\n");
           });
 
@@ -50,11 +50,27 @@ class AlbumList extends Component {
   render() {
     // console.log(this.state);
 
-    return (
-      <ScrollView>
-        {this.renderAlbums()}
-      </ScrollView>
-    );
+      if (this.state.albums.length === 0)
+      {
+          return (
+             <ActivityIndicator
+               style={{
+                 alignItems: 'center',
+                 justifyContent: 'center',
+                   marginTop:200
+               }}
+               animating={true}
+               size="large"
+             />
+          );
+      }
+      else {
+          return (
+              <ScrollView>
+                  {this.renderAlbums()}
+              </ScrollView>
+          );
+      }
   }
 }
 

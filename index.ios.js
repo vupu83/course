@@ -2,10 +2,9 @@
 
 // Import a library to help create a component
 import React, { Component } from 'react';
-import { AppRegistry, View, Text, TextInput, Alert } from 'react-native';
+import { AppRegistry, View, Text, TextInput, Alert, Button } from 'react-native';
 import Header from './src/components/header';
 import AlbumList from './src/components/AlbumList';
-import Button from './src/components/Button';
 import CardSection from './src/components/CardSection';
 import Card from './src/components/Card';
 
@@ -34,23 +33,19 @@ class App extends Component {
         }
         else {
             return (
-                <View style={{ marginTop: 200,     flexDirection: 'column',
-                    justifyContent: 'space-around'}}>
-                <Card>
-                    <Text style={{ marginTop: 20, marginLeft: 5 }}>歡迎來到玄奘大學選課系統</Text>
+                <View style={{ flexDirection: 'column',
+                    justifyContent: 'center'}}>
+                    <Header headerText={'玄奘大學選課系統'} />
                     <TextInput
                         style={styles.buttonStyle}
                         placeholder="  請輸入學號"
                         onChangeText={(text) => this.setState({ text })}
                         autoFocus={ true }
                     />
-                    <CardSection>
                     <Button
                         onPress={() => this.handlePress()}
-                    >登入
-                    </Button>
-                    </CardSection>
-                </Card>
+                        title = "登入"
+                        />
                 </View>
             );
         }

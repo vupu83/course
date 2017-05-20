@@ -5,14 +5,9 @@ import CardSection from './CardSection';
 
 class AlbumDetail extends React.Component {
     state = { choosed: false };
-    title; image; artist; content;
     constructor (props)
     {
         super(props);
-        this.title = props.album.title;
-        this.image = props.album.thumbnail_image;
-        this.artist = props.album.artist;
-        this.content = props.album.content;
     }
 
     childAddAction = (title) => {
@@ -25,34 +20,35 @@ class AlbumDetail extends React.Component {
     };
 
     render() {
+        const { title, artist, thumbnail_image, content } = props.album;
         return (
             <Card>
                 <CardSection>
                     <View style={styles.thumbnailContainerStyle}>
                         <Image
                             style={styles.thumbnailStyle}
-                            source={{uri: this.image}}
+                            source={{uri: thumbnail_image}}
                         />
                     </View>
                     <View style={styles.headerContentStyle}>
-                        <Text style={styles.headerTextStyle}>{this.title}</Text>
-                        <Text>{this.artist}</Text>
+                        <Text style={styles.headerTextStyle}>{title}</Text>
+                        <Text>{artist}</Text>
                     </View>
                 </CardSection>
 
                 <CardSection>
-                    <Text>{this.content}</Text>
+                    <Text>{content}</Text>
                 </CardSection>
 
                 <CardSection>
                     <Button
                         style={styles.buttonStyle}
-                        onPress={() => this.childAddAction(this.title)} title="加選"
+                        onPress={() => this.childAddAction(title)} title="加選"
                         disabled={this.state.choosed}
                         />
                     <Button
                         style={styles.buttonStyle}
-                        onPress={() => this.childRemoveAction(this.title)} title="退選"
+                        onPress={() => this.childRemoveAction(title)} title="退選"
                         disabled={!this.state.choosed}
                     />
                 </CardSection>
