@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { ScrollView, Alert, ActivityIndicator } from 'react-native';
 import axios from 'axios';
-import AlbumDetail from './AlbumDetail';
+import CourseDetail from './CourseDetail';
 
-class AlbumList extends Component {
+class CourseList extends Component {
   state = { albums: [], course: [] };
 
     constructor(props) {
@@ -19,7 +19,7 @@ class AlbumList extends Component {
 
   renderAlbums() {
     return this.state.albums.map(album =>
-      <AlbumDetail key={album.title} album={album} action={this.handler}/>
+      <CourseDetail key={album.title} album={album} action={this.handler}/>
     );
   }
 
@@ -74,4 +74,4 @@ class AlbumList extends Component {
   }
 }
 
-export default AlbumList;
+export default CourseList;

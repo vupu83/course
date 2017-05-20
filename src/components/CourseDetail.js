@@ -1,9 +1,9 @@
 import React from 'react';
-import { Text, View, Image, Alert, Button } from 'react-native';
+import { Text, View, Image, Button } from 'react-native';
 import Card from './Card';
 import CardSection from './CardSection';
 
-class AlbumDetail extends React.Component {
+class CourseDetail extends React.Component {
     state = { choosed: false };
     constructor (props)
     {
@@ -20,7 +20,7 @@ class AlbumDetail extends React.Component {
     };
 
     render() {
-        const { title, artist, thumbnail_image, content } = props.album;
+        const { title, artist, thumbnail_image, content } = this.props.album;
         return (
             <Card>
                 <CardSection>
@@ -92,4 +92,4 @@ const styles = {
     }
 };
 
-export default AlbumDetail;
+export default CourseDetail;
