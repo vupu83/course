@@ -2,7 +2,7 @@
 
 // Import a library to help create a component
 import React, { Component } from 'react';
-import { AppRegistry, View, Text, TextInput, Alert, Button } from 'react-native';
+import { AppRegistry, View, TextInput, Alert, Button } from 'react-native';
 import Header from './src/components/header';
 import CourseList from './src/components/CourseList';
 
@@ -31,25 +31,29 @@ class App extends Component {
         }
         else {
             return (
-                <View  style={{ flexDirection: 'column',
-                    justifyContent: 'center', flex: 1 }}>
-                    <Header headerText={'玄奘大學選課系統'} />
-                    <View  style={ styles.containerStyle }>
-                    <TextInput
-                        style={styles.buttonStyle}
-                        placeholder="  請輸入學號"
-                        onChangeText={(text) => this.setState({ text })}
-                        autoFocus={ true }
-                    />
+                <View style={{
+                    flexDirection: 'column',
+                    justifyContent: 'center', flex: 1
+                }}>
+                    <Header headerText={'玄奘大學選課系統'}/>
+                    <View style={ styles.containerStyle }>
                         <TextInput
-                            style={styles.buttonStyle}
+                            style={[styles.textStyle, styles.buttonStyle]}
+                            placeholder="  請輸入學號"
+                            onChangeText={(text) => this.setState({text})}
+                            autoFocus={ true }
+                        />
+                        <TextInput
+                            style={[styles.textStyle, styles.buttonStyle]}
                             placeholder="  請輸入密碼"
                             secureTextEntry={ true }
                         />
-                    <Button
-                        onPress={() => this.handlePress()}
-                        title = "登入"
-                        />
+                        <View style={styles.buttonStyle}>
+                            <Button
+                                onPress={() => this.handlePress()}
+                                title="登入"
+                            />
+                        </View>
                     </View>
 
                 </View>
@@ -59,18 +63,19 @@ class App extends Component {
 }
 
 const styles = {
+    textStyle: {
+        fontWeight: '600'
+    },
     buttonStyle: {
         height: 40,
-        marginTop: 20,
         alignSelf: 'stretch',
         backgroundColor: '#fff',
         borderRadius: 5,
         borderWidth: 1,
         borderColor: '#007aff',
-        marginLeft: 10,
-        marginRight: 10,
-        marginBottom: 10,
-        fontWeight: '600'
+        marginLeft: 20,
+        marginRight: 20,
+        marginBottom: 30
     },
     containerStyle: {
         flexDirection: 'column',

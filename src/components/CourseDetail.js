@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, Image, Button } from 'react-native';
+import { Text, View, Image, Button, Alert } from 'react-native';
 import Card from './Card';
 import CardSection from './CardSection';
 
@@ -11,12 +11,25 @@ class CourseDetail extends React.Component {
     }
 
     childAddAction = (title) => {
-        this.setState({choosed: true});
-        this.props.action(title);
+        Alert.alert('確認', "您確定要加選" + title + "?",
+            [ {text: '是', onPress: () => {
+                this.setState({choosed: true});
+                this.props.action(title);
+            }},
+                {text: '否', onPress: () => console.log('Cancel Pressed'), style: 'cancel'}],
+            { cancelable: false }
+        );
     };
+
     childRemoveAction = (title) => {
-        this.setState({choosed: false});
-        this.props.action(title);
+        Alert.alert('確認', "您確定要退選" + title + "?",
+            [ {text: '是', onPress: () => {
+                this.setState({choosed: false});
+                this.props.action(title);
+            }},
+                {text: '否', onPress: () => console.log('Cancel Pressed'), style: 'cancel'}],
+            { cancelable: false }
+        );
     };
 
     render() {
@@ -41,16 +54,19 @@ class CourseDetail extends React.Component {
                 </CardSection>
 
                 <CardSection>
+                    <View style={styles.buttonStyle}>
                     <Button
-                        style={styles.buttonStyle}
                         onPress={() => this.childAddAction(title)} title="加選"
                         disabled={this.state.choosed}
                         />
+                    </View>
+                    <View style={styles.buttonStyle}>
                     <Button
                         style={styles.buttonStyle}
                         onPress={() => this.childRemoveAction(title)} title="退選"
                         disabled={!this.state.choosed}
                     />
+                    </View>
                 </CardSection>
             </Card>
         );
@@ -85,7 +101,7 @@ const styles = {
         alignSelf: 'stretch',
         backgroundColor: '#fff',
         borderRadius: 5,
-        borderWidth: 1,
+        borderWidth: 2,
         borderColor: '#007aff',
         marginLeft: 5,
         marginRight: 5
