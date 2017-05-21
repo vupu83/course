@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { ScrollView, Alert, ActivityIndicator } from 'react-native';
 import axios from 'axios';
-import CourseDetail from './CourseDetail';
+import { CourseDetail } from './';
 
 class CourseList extends Component {
   state = { albums: [], course: [] };
@@ -74,4 +74,4 @@ class CourseList extends Component {
   }
 }
 
-export default CourseList;
+export { CourseList };

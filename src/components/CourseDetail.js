@@ -1,7 +1,6 @@
 import React from 'react';
 import { Text, View, Image, Button, Alert } from 'react-native';
-import Card from './Card';
-import CardSection from './CardSection';
+import { Card, CardSection } from './';
 
 class CourseDetail extends React.Component {
     state = { choosed: false };
@@ -108,4 +107,4 @@ const styles = {
     }
 };
 
-export default CourseDetail;
+export { CourseDetail };
