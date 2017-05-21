@@ -1,6 +1,5 @@
 // Index.ios.js - place code in here for IOS!!!!
 
-// Import a library to help create a component
 import React, {Component} from 'react';
 import {AppRegistry, View, TextInput, Alert, Button, Text} from 'react-native';
 import { Card, CardSection } from './';
