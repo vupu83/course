@@ -11,10 +11,10 @@ class LoginForm extends Component {
         this.state = {text: '', loginSuccess: false};
     }
 
-    handlePress()
+    checkAuth()
     {
         if (this.state.text === '12345')
-            this.props.action(true);
+            this.props.handler(true);
         else
             Alert.alert("學號輸入錯誤!");
     }
@@ -46,7 +46,7 @@ class LoginForm extends Component {
                         <CardSection>
                             <View style={styles.buttonStyle}>
                                 <Button
-                                    onPress={() => this.handlePress()}
+                                    onPress={() => this.checkAuth()}
                                     title="登入"
                                 />
                             </View>

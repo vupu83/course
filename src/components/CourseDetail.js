@@ -9,22 +9,22 @@ class CourseDetail extends React.Component {
         super(props);
     }
 
-    childAddAction = (title) => {
+    addCourse = (title) => {
         Alert.alert('確認', "您確定要加選" + title + "?",
             [ {text: '是', onPress: () => {
                 this.setState({choosed: true});
-                this.props.action(title);
+                this.props.handler(title);
             }},
                 {text: '否', onPress: () => console.log('Cancel Pressed'), style: 'cancel'}],
             { cancelable: false }
         );
     };
 
-    childRemoveAction = (title) => {
+    removeCourse = (title) => {
         Alert.alert('確認', "您確定要退選" + title + "?",
             [ {text: '是', onPress: () => {
                 this.setState({choosed: false});
-                this.props.action(title);
+                this.props.handler(title);
             }},
                 {text: '否', onPress: () => console.log('Cancel Pressed'), style: 'cancel'}],
             { cancelable: false }
@@ -55,14 +55,14 @@ class CourseDetail extends React.Component {
                 <CardSection>
                     <View style={styles.buttonStyle}>
                     <Button
-                        onPress={() => this.childAddAction(title)} title="加選"
+                        onPress={() => this.addCourse(title)} title="加選"
                         disabled={this.state.choosed}
                         />
                     </View>
                     <View style={styles.buttonStyle}>
                     <Button
                         style={styles.buttonStyle}
-                        onPress={() => this.childRemoveAction(title)} title="退選"
+                        onPress={() => this.removeCourse(title)} title="退選"
                         disabled={!this.state.choosed}
                     />
                     </View>

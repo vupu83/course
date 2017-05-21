@@ -9,7 +9,7 @@ class CourseList extends Component {
     constructor(props) {
         super(props);
 
-        this.handler = this.handler.bind(this);
+        this.updateCourseState = this.updateCourseState.bind(this);
     }
 
   componentWillMount() {
@@ -19,11 +19,11 @@ class CourseList extends Component {
 
   renderAlbums() {
     return this.state.albums.map(album =>
-      <CourseDetail key={album.title} album={album} action={this.handler}/>
+      <CourseDetail key={album.title} album={album} handler={this.updateCourseState}/>
     );
   }
 
-  handler = (title) => {
+  updateCourseState = (title) => {
       let courseArray = this.state.course;
       if (!courseArray.includes(title))
           courseArray.push(title);

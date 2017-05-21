@@ -12,7 +12,7 @@ class App extends Component {
         this.state = {text: '', loginSuccess: false};
     }
 
-    handlePress = (loginState) => {
+    getLoginState = (loginState) => {
         this.setState({loginSuccess: loginState});
     };
 
@@ -29,7 +29,7 @@ class App extends Component {
             return (
                 <View>
                     <Header headerText={'玄奘大學選課系統'}/>
-                    <LoginForm action={this.handlePress}/>
+                    <LoginForm handler={this.getLoginState}/>
                 </View>
             );
         }
