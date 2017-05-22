@@ -9,7 +9,7 @@ class CourseList extends Component {
     constructor(props) {
         super(props);
 
-        this.updateCourseState = this.updateCourseState.bind(this);
+        //this.updateCourseState = this.updateCourseState.bind(this);
     }
 
   componentWillMount() {

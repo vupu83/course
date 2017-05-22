@@ -2,8 +2,8 @@
 
 // Import a library to help create a component
 import React, {Component} from 'react';
-import {AppRegistry, View, TextInput, Alert, Button, Text} from 'react-native';
-import { Header, Card, CardSection, CourseList, LoginForm } from './src/components';
+import {AppRegistry, View} from 'react-native';
+import {Header, CourseList, LoginForm} from './src/components';
 
 // Create a component
 class App extends Component {
@@ -16,23 +16,22 @@ class App extends Component {
         this.setState({loginSuccess: loginState});
     };
 
-    render() {
+    renderMainComponent() {
         if (this.state.loginSuccess) {
-            return (
-                <View style={{flex: 1}}>
-                    <Header headerText={'玄奘大學選課系統'}/>
-                    <CourseList />
-                </View>
-            );
+            return (<CourseList />);
         }
         else {
-            return (
-                <View>
-                    <Header headerText={'玄奘大學選課系統'}/>
-                    <LoginForm handler={this.getLoginState}/>
-                </View>
-            );
+            return (<LoginForm handler={this.getLoginState}/>);
         }
+    }
+
+    render() {
+        return (
+            <View>
+                <Header headerText={'玄奘大學選課系統'}/>
+                { this.renderMainComponent() }
+            </View>
+        );
     }
 }
 
